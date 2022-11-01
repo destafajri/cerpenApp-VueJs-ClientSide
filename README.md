@@ -1,29 +1,27 @@
-# frontend-client
+# E-Cerpen
+Basic E-Cerpen Web App built with GO and Vue.js
+## Features
+- Home Page
+- Register, Login
+- Upload Cerpen
+- Kumpulan Cerpen Author
+- View Cerpen
+- Edit/Delete Cerpen
+- Admin Panel:
+  - Dashboard
+  - Manage Cerpen
+  - Validasi Cerpen
 
-This template should help get you started developing with Vue 3 in Vite.
+## Technology Stack
+- Front-End: Vue.js
+- Back-End: Golang
+- Data Base: Supabase(PostgreSQL)
+- Deployment: Heroku
+- UI Automation testing: Cypress
+- API testing: Postman
+- Kanban Manajemen Tool: Notion
+- Repository: Github
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## Full Documentation
+- https://whimsical.com/project-documentation-XAnHvCLgCUZqYvN6P1MA43
