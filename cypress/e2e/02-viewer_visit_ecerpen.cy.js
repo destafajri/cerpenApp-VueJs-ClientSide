@@ -8,7 +8,7 @@ describe('Viewer Wants to Read Cerpen', ()=>{
     it('viewer click get started', ()=>{    
         cy.contains('Get Started').click({force: true})
 
-        cy.wait(5000)
+        cy.wait(3000)
         cy.contains('Viewer').click({force: true})
 
         //assertion
