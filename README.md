@@ -21,6 +21,7 @@ Basic E-Cerpen Web App built with GO and Vue.js
 - API testing: Postman
 - Kanban Manajemen Tool: Notion
 - Repository: Github
+- CI/CD : CircleCI
 
 
 ## Full Documentation
