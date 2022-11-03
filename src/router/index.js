@@ -47,10 +47,11 @@ const router = createRouter({
     {
       path: '/home',
       name: 'Home',
-      component: Home
+      component: Home,
+      props: (route) => ({query: route.query.page})
     },
     {
-      path: '/cerpen',
+      path: '/cerpen/:id',
       name: 'Cerpen',
       component: Cerpen
     },

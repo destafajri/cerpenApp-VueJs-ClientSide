@@ -16,13 +16,13 @@
                 Home
                 </a>
             </li>
-            <li v-if="author">
+            <li>
                 <a href="/upload">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 Upload Cerpen
                 </a>
             </li>
-            <li v-if="author">
+            <li>
                 <a href="/yourcerpen">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
                 Kumpulan Cerita-mu
@@ -32,8 +32,8 @@
             <!-- Menu End -->
             <!-- Button Logout -->
             <div class="absolute bottom-0">
-                <button v-if="author" class="btn btn-sm ml-20">Logout</button>
-                <p v-if="!author" class="pt-5 pl-6 pb-3 text-center">Mau Jadi Author? 
+                <button class="btn btn-sm ml-20">Logout</button>
+                <p class="pt-5 pl-6 pb-3 text-center">Mau Jadi Author? 
                     <span class="font-bold">
                         <a href="/register">Klik disini</a>
                     </span>
@@ -47,8 +47,9 @@
         <div class="w-4/5 h-full pt-5 pl-0 pr-5 bg-slate-200">
             <h1 class="pb-3 pl-3 text-inherit text-lg font-medium font-mono">Latest</h1>
             <!-- Cerpen -->
-            <div class="mb-5">
-                <div v-for="c in cerpens" class="card lg:card-side bg-base-100 shadow-xl mb-6">
+            <div v-if="isFetching">Loading...</div>
+            <div class="mb-5" v-if="data">
+                <div v-for="c in data.data" :key="c.id_cerpen" class="card lg:card-side bg-base-100 shadow-xl mb-6">
                     <div class="card-body">
                         <h1 class="card-title">{{c.judul}}</h1>
                         <h3 class="text-sm">Author: <span class="text-red-400 font-semibold">{{c.nama_author}}</span></h3>
@@ -68,7 +69,7 @@
             <div class="btn-group flex justify-end mt-6 pr-5">               
                 <button class="btn btn-xs">«</button>
                 <!-- <button class="btn btn-xs">Page 1</button> -->
-                <button class="btn btn-xs">»</button>
+                <button class="btn btn-xs" @click="handleIncrementPage">»</button>
             </div>
             <!-- Pagination End -->
         </div>
@@ -85,29 +86,38 @@
     <!-- Footer End -->
 </template>
 
-<script>
-import Cerpen from "../services/cerpen"
+<script setup>
 
-export default{
-data() {
-    return {
-      cerpens: [],
-    };
-  },
-  methods: {
-    getCerpens() {
-      Cerpen.getAll()
-        .then((response) => {
-          this.cerpens = response.data.data;
-          console.log(this.cerpens);
-        })
-        .catch((e) => {
-          console.log(e);
-        })
-    }
-  },
-  mounted() {
-    this.getCerpens();
-  },
-};
+import { ref, watch} from "vue";
+import { useFetch } from '@vueuse/core'
+import { useRouter, useRoute} from "vue-router";
+
+//menabahkan url selanjutnya
+const router = useRouter()
+
+//menagmbil query params
+const route = useRoute()
+const {query} = route
+const URL = ref(`https://api-ecerpen-bangdaud-golang.herokuapp.com/cerpen`)
+
+if (query.page){
+    URL.value = `https://api-ecerpen-bangdaud-golang.herokuapp.com/cerpen?page=${query.page}`
+}
+
+console.log(URL.value)
+
+const page = ref(1)
+//http request fetch data di API
+const { isFetching, error, data } = useFetch(URL, { refetch: true }).get().json();
+
+function handleIncrementPage(){
+    page.value += 1
+    router.push({name: 'Home', query: {page: page.value}})
+}
+
+//memantau perubahan nilai page, setia ada perubahan pada page maka merubah query parameter
+watch(page, () => {
+    URL.value = `https://api-ecerpen-bangdaud-golang.herokuapp.com/cerpen?page=${page.value}`
+})
+
 </script>
