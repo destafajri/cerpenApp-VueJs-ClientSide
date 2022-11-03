@@ -1,6 +1,6 @@
 <template>
     <!-- Table -->
-    <div class="overflow-x-auto mr-20 ml-20 mt-10">
+    <div class="overflow-x-auto mr-36 ml-36 mt-20">
         <table class="table table-compact w-full">
             <thead>
             <tr>
