@@ -8,5 +8,10 @@ workflows:
       - cypress/install:
               build: npm run build 
       - cypress/run:
+              requires:
+                    - cypress/install
+              record: true # record results on Cypress Dashboard
+              parallel: true # split all specs across machines
+              parallelism: 4 
               store_artifacts: true
               command: npx cypress run --record --key 0fdf3b68-0707-43ff-a646-dcb5640389da
