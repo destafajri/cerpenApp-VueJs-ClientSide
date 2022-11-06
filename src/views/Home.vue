@@ -50,15 +50,15 @@
             <div v-if="isFetching">Loading...</div>
             <h1 v-if="error" class="font-mono pt-5 pl-3 italic">Cerpen Not Found ...</h1>
             <div class="mb-5" v-if="data">
-                <div v-for="c in data.data" :key="c.id_cerpen" class="card lg:card-side bg-base-100 shadow-xl mb-6">
+                <div v-for="c, index in data.data" :value="index" class="card lg:card-side bg-base-100 shadow-xl mb-6">
                     <div class="card-body">
-                        <h1 class="card-title">{{c.judul}}</h1>
+                        <a class="card-title" :href="'/cerpen?order=' + (index+numb)">{{c.judul}}</a>
                         <h3 class="text-sm">Author: <span class="text-red-400 font-semibold">{{c.nama_author}}</span></h3>
                         <div class="overflow-hidden pr-1 pb-12 h-3">
                             <p class="text-justify text-xs">{{c.isi}}</p>
                         </div>
                         <div class="pr-1 pt-0">
-                            <a class="card-actions text-sm justify-end" href="">Read more ....</a>
+                            <a class="card-actions text-sm justify-end" :href="'/cerpen?order=' + (index+numb)">Read more ....</a>
                             <p class="text-xs italic">#{{c.tema}}</p>
                         </div>
                     </div>
@@ -95,23 +95,19 @@ import { useRouter, useRoute} from "vue-router";
 //menabahkan url selanjutnya
 const router = useRouter()
 //mengambil query params
-// const route = useRoute()
-// const {query} = route
-const {query} = useRoute()
+const route = useRoute()
+const {query} = route
+// const {query} = useRoute()
 const URL = ref(`https://api-ecerpen-bangdaud-golang.herokuapp.com/cerpen`)
-
 if (query.page){
     URL.value = `https://api-ecerpen-bangdaud-golang.herokuapp.com/cerpen?page=${query.page}`
 }
-
 console.log(URL.value)
-
 //constanta pagination
 const page = ref(1)
-
 //http request fetch data di API
 const { isFetching, error, data } = useFetch(URL, { refetch: true }).get().json();
-
+console.log(data)
 function handleDecrementPage(){
     page.value -= 1
     if (page.value <1){
@@ -119,15 +115,23 @@ function handleDecrementPage(){
     }
     router.push({name: 'Home', query: {page: page.value}})
 }
-
 function handleIncrementPage(){
     page.value += 1
     router.push({name: 'Home', query: {page: page.value}})
 }
 
+
 //memantau perubahan nilai page, setia ada perubahan pada page maka merubah query parameter
 watch(page, () => {
     URL.value = `https://api-ecerpen-bangdaud-golang.herokuapp.com/cerpen?page=${page.value}`
 })
+
+//logic eksponensial untuk select cerpen
+console.log(query.page)
+var num = parseInt(query.page)
+if (isNaN(num)) num = 1;
+console.log(num)
+var numb = ((num*2)-1)
+console.log("ini numb",numb)
 
 </script>
