@@ -48,6 +48,7 @@ export default {
         },
       }
     );
+    console.log(response)
 //     this.user = response.data.data;
 //     let myDate = new Date(response.data.data.created_at).getFullYear();
 //     this.date = myDate;

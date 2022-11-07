@@ -62,9 +62,10 @@ const router = createRouter({
       component: Upload
     },
     {
-      path: '/yourcerpen/:id_author/cerpen',
+      path: '/yourcerpen/:id_author',
       name: 'Yourcerpen',
-      component: Yourcerpen
+      component: Yourcerpen,
+      props: (routes) => ({query: routes.query.page})
     },
   ]
 })

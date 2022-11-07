@@ -71,24 +71,3 @@ watch(order, () => {
 })
 
 </script>
-
-<!-- <script>
-import { ref, computed } from "vue";
-// import { useRoute, useRouter } from "vue-router";
-import axios from 'axios'
-
-const order = ref(this.URL)
-
-export default{
-    data(){
-        return {
-            id: ""
-        }
-    },
-    async created(){
-        const response = await axios.get(`https://api-ecerpen-bangdaud-golang.herokuapp.com/read?order=${order.value}`)
-        console.log("ini response",response.data.data.id_cerpen)
-        this.data = response.data.data.id_cerpen
-    }
-}
-</script> -->
