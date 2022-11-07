@@ -4,7 +4,7 @@
             <h1 class="flex flex-col items-center text-3xl">Author</h1>
             <input id="email" v-model="email" required type="email" placeholder="Email" class="input input-md input-bordered input-info w-full block" />
             <input id="password" v-model="password" required type="password" placeholder="Password" class="input input-md input-bordered input-info w-full block" />
-            <button id="submit-login-btn-author"  @click="submit" class="btn w-full">Masuk</button>
+            <button id="submit-login-btn-author"  @click="handleSubmit" class="btn w-full">Masuk</button>
             <!-- Redirect link to Register -->
             <RouterLink class="flex flex-col items-end text-left text-sm" to="/register">
                     Belum punya akun penulis? Registrasi disini
@@ -12,12 +12,6 @@
         </form>
     </div>
 </template>
-
-<!-- <script setup>
-import { ref, watch} from "vue";
-import { useFetch } from '@vueuse/core'
-import { useRouter, useRoute} from "vue-router";
-</script> -->
 
 <script setup>
 import axios from "axios";
