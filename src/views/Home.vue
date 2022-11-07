@@ -17,13 +17,13 @@
                 </a>
             </li>
             <li v-if="author">
-                <a href="/upload">
+                <a :href="'/upload/'+id">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 Upload Cerpen
                 </a>
             </li>
             <li v-if="author">
-                <a href="/yourcerpen">
+                <a :href="'/yourcerpen/'+id">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
                 Kumpulan Cerita-mu
                 </a>
@@ -32,12 +32,13 @@
             <!-- Menu End -->
             <!-- Button Logout -->
             <div class="absolute bottom-0">
-                <button v-if="author" class="btn btn-sm ml-20">Logout</button>
+                <button v-if="author" class="btn btn-sm ml-20 bg-slate-300" @click.prevent="handleLogout">Logout</button>
                 <p v-if="!author" class="pt-5 pl-6 pb-3 text-center">Mau Jadi Author? 
                     <span class="font-bold">
                         <a href="/register">Klik disini</a>
                     </span>
                 </p>
+                <a v-if="!author" class="btn btn-xs ml-14 bg-slate-300" href="/author">Login As Author</a>
             </div>
             <!-- Button Logout End -->
         </div>
@@ -91,6 +92,9 @@ import { ref, watch} from "vue";
 import { useFetch } from '@vueuse/core'
 import { useRouter, useRoute} from "vue-router";
 
+//cons local storage
+const author = localStorage.getItem("role");
+const id = localStorage.getItem("id_author");
 //menabahkan url selanjutnya
 const router = useRouter()
 //mengambil query params
@@ -121,6 +125,12 @@ function handleIncrementPage(){
     // window.location.href =`http://127.0.0.1:5173/home?page=${page.value}`
 }
 
+function handleLogout(){
+    localStorage.removeItem("id_author")
+    localStorage.removeItem("token")
+    localStorage.removeItem("role")
+    router.push(`/welcome`)
+}
 
 //memantau perubahan nilai page, setia ada perubahan pada page maka merubah query parameter
 watch(page, () => {
