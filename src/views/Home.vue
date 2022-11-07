@@ -68,7 +68,7 @@
 
             <!-- Pagination -->
             <div class="btn-group flex justify-end mt-6 pr-5">               
-                <button class="btn btn-xs" @click.prevent="handleDecrementPage" >«</button>
+                <button class="btn btn-xs" @click.prevent="handleDecrementPage">«</button>
                 <button class="btn btn-xs" @click.prevent="handleIncrementPage">»</button>
             </div>
             <!-- Pagination End -->
@@ -112,11 +112,13 @@ function handleDecrementPage(){
     if (page.value <1){
         page.value = 1
     }
-    router.push({name: 'Home', query: {page: page.value}})
+    // router.push({name: 'Home', query: {page: page.value}})
+    window.location.href = `https://ecerpen-dev.herokuapp.com/home?page=${page.value}`
 }
 function handleIncrementPage(){
     page.value += 1
-    router.push({name: 'Home', query: {page: page.value}})
+    // router.push({name: 'Home', query: {page: page.value}})
+    window.location.href =`https://ecerpen-dev.herokuapp.com/home?page=${page.value}`
 }
 
 
