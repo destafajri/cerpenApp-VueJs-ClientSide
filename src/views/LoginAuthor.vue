@@ -2,9 +2,9 @@
     <div class="flex flex-col items-center justify-center min-h-screen gap-4">
         <form  @submit.prevent="handleSubmit" class="w-full max-w-xs space-y-4">
             <h1 class="flex flex-col items-center text-3xl">Author</h1>
-            <input data-testid="email" v-model="email" required type="email" placeholder="Email" class="input input-md input-bordered input-info w-full block" />
-            <input data-testid="password" v-model="password" required type="password" placeholder="Password" class="input input-md input-bordered input-info w-full block" />
-            <button data-testid="submit-login-btn-author"  @click="submit" class="btn w-full">Masuk</button>
+            <input id="email" v-model="email" required type="email" placeholder="Email" class="input input-md input-bordered input-info w-full block" />
+            <input id="password" v-model="password" required type="password" placeholder="Password" class="input input-md input-bordered input-info w-full block" />
+            <button id="submit-login-btn-author"  @click="submit" class="btn w-full">Masuk</button>
             <!-- Redirect link to Register -->
             <RouterLink class="flex flex-col items-end text-left text-sm" to="/register">
                     Belum punya akun penulis? Registrasi disini
