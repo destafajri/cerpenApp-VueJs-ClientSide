@@ -54,14 +54,15 @@ const router = createRouter({
       path: '/cerpen',
       name: 'Cerpen',
       component: Cerpen,
+      props: (routes) => ({query: routes.query.order})
     },
     {
-      path: '/upload',
+      path: '/upload/:id_author',
       name: 'Upload',
       component: Upload
     },
     {
-      path: '/yourcerpen',
+      path: '/yourcerpen/:id_author/cerpen',
       name: 'Yourcerpen',
       component: Yourcerpen
     },
