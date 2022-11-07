@@ -112,13 +112,13 @@ function handleDecrementPage(){
     if (page.value <1){
         page.value = 1
     }
-    // router.push({name: 'Home', query: {page: page.value}})
-    window.location.href = `https://ecerpen-dev.herokuapp.com/home?page=${page.value}`
+    router.push({name: 'Home', query: {page: page.value}})
+    // window.location.href = `http://127.0.0.1:5173/home?page=${page.value}`
 }
 function handleIncrementPage(){
     page.value += 1
-    // router.push({name: 'Home', query: {page: page.value}})
-    window.location.href =`https://ecerpen-dev.herokuapp.com/home?page=${page.value}`
+    router.push({name: 'Home', query: {page: page.value}})
+    // window.location.href =`http://127.0.0.1:5173/home?page=${page.value}`
 }
 
 
