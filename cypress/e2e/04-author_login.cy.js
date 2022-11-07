@@ -1,19 +1,25 @@
-// describe('Author Wants to Login with valid credential', ()=>{
+describe('Author Wants to Login with valid credential', ()=>{
 
-//     beforeEach(() =>{
-//         cy.visit('https://ecerpen-dev.herokuapp.com/welcome')
+    beforeEach(() =>{
+        cy.visit('http://127.0.0.1:5173/author')
         
-//     })
+    })
 
-//     it('viewer click get started', ()=>{
-//         cy.contains('Author').click({force: true})
+    it('author redirect to login page', ()=>{
+        // cy.wait(1000)
+        // cy.get('input[type=Email]').type("testing@gmail.com", {force: true})
 
-//         cy.get('[data-testid="email"]').type('testing@gmail.com', {force: true})
-//         cy.get('[data-testid="password"]').type('testing', {force: true})
+        // cy.wait(1000)
+        // cy.get('input[type=Password]').type("testing", {force: true})
+
+        cy.get('#email').type('testing@gmail.com')
+        cy.get('#password').type('testing')
         
-//         cy.get('[data-testid="submit-login-btn-author"]').click({force: true})
+        cy.wait(1000)
+        cy.contains('Masuk').click({force: true})
 
-//         cy.url().should('eq', 'https://ecerpen-dev.herokuapp.com/home')
-//     })
+        cy.wait(3000)
+        cy.url().should('eq', 'https://ecerpen-dev.herokuapp.com/home')
+    })
 
-// })
+})

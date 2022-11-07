@@ -5,7 +5,7 @@ describe('Viewer Wants to Resgiter as Author', ()=>{
         
     })
 
-    it('viewer click get started', ()=>{    
+    it('viewer click register', ()=>{    
         cy.wait(1000)
         cy.contains('Klik disini').click({force: true})
 
