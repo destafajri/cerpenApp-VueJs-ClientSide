@@ -21,8 +21,15 @@ Basic E-Cerpen Web App built with GO and Vue.js
 - API testing: Postman
 - Kanban Manajemen Tool: Notion
 - Repository: Github
+<<<<<<< HEAD
 - Automation Server(CI/CD) : CircleCI
+=======
+- Automation Server(CI/CD): CircleCI
+>>>>>>> origin/dev
 
 
 ## Full Documentation
 - https://whimsical.com/project-documentation-XAnHvCLgCUZqYvN6P1MA43
+
+## API
+- https://api-ecerpen-bangdaud-golang.herokuapp.com/
