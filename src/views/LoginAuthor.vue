@@ -48,7 +48,7 @@ export default {
       console.log(authorid);
       const role = localStorage.getItem("role");
       console.log(role);
-      const responseAuthor = await axios.get(
+      const responseAuthor = axios.get(
         `https://api-ecerpen-bangdaud-golang.herokuapp.com/author/${response.data.data.id}/cerpen`,{
             headers: {
           Authorization: localStorage.getItem("token"),

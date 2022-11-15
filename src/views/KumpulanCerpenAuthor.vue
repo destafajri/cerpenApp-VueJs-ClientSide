@@ -1,32 +1,45 @@
 <template>
     <!-- Table -->
     <div class="overflow-x-auto mr-36 ml-36 mt-20">
-        <table class="table table-compact w-full">
+        <!-- <table class="table table-auto h- h-full w-screen border-separate border border-green-800">
             <thead>
             <tr>
-                <th></th> 
-                <th>Name</th> 
-                <th>Job</th> 
-                <th>company</th> 
-                <th>location</th> 
-                <th>Last Login</th> 
-                <th>Favorite Color</th>
+                <th>ID Cerpen</th> 
+                <th>Judul</th> 
+                <th>Tema</th> 
+                <th>Created At</th> 
+                <th>Is Publish</th> 
+                <th>Edit</th> 
             </tr>
             </thead> 
-        <tbody>
-            <tr>
-                <th>20</th> 
-                <td>Lorelei Blackstone</td> 
-                <td>Data Coordiator</td> 
-                <td>Witting, Kutch and Greenfelder</td> 
-                <td>Kazakhstan</td> 
-                <td>6/3/2020</td> 
-                <td>Red</td>
+            <tbody>
+            <tr v-for="c in cerpen" class="align-baseline">
+                <th>{{c.id_cerpen}}</th> 
+                <td class="max-w-xs overflow-x-auto">{{c.judul}}</td> 
+                <td class="max-w-xs overflow-x-auto">{{c.tema}}</td> 
+                <td>{{c.created_at}}</td> 
+                <td>{{c.is_publish}}</td> 
+                <td>........</td>
             </tr>
             </tbody> 
-        </table>
+        </table> -->
+        <div class="ml-20 inline-grid gap-14 grid-cols-2">
+          <div v-for="c in cerpen" class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+              <h2 class="card-title">{{c.judul}}</h2>
+              <p>Tema: {{c.tema}}</p>
+              <p>Created: {{c.created_at}}</p>
+              <p>Publish? {{c.is_publish}}</p>
+              <p>Deleted? {{c.is_deleted}}</p>
+              <div class="card-actions justify-end">
+                <button class="btn btn-xs">Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </template>
+
 
 <script>
 
@@ -35,8 +48,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-        nama: "",
-
+        cerpen:{}
     };
   },
   async created() {
@@ -49,6 +61,10 @@ export default {
       }
     );
     console.log(response)
+    this.cerpen = response.data.data
+  },
+};
+
 //     this.user = response.data.data;
 //     let myDate = new Date(response.data.data.created_at).getFullYear();
 //     this.date = myDate;
@@ -89,7 +105,4 @@ export default {
 //         console.log("update failed");
 //       }
 //     },
-  },
-};
-
 </script>
