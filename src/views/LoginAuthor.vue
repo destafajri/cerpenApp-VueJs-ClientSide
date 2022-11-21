@@ -40,7 +40,7 @@ export default {
         // this.$store.dispatch("role", response.data.data);
         this.$router.push("/home");
       } else {
-        this.$router.push("/login");
+        this.$router.push("/author");
       }
       const usertoken = localStorage.getItem("token");
       console.log(usertoken);
