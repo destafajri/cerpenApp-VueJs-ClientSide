@@ -2,8 +2,8 @@
     <div class="flex flex-col items-center justify-center min-h-screen gap-4">
         <form  @submit.prevent="handleSubmit" class="w-full max-w-xs space-y-4">
             <h1 class="flex flex-col items-center text-3xl">Author</h1>
-            <input v-model="email" type="email" placeholder="Email" class="input input-md input-bordered input-info w-full block" />
-            <input v-model="password" type="password" placeholder="Password" class="input input-md input-bordered input-info w-full block" />
+            <input id="email" v-model="email" type="email" placeholder="Email" class="input input-md input-bordered input-info w-full block" />
+            <input id="password" v-model="password" type="password" placeholder="Password" class="input input-md input-bordered input-info w-full block" />
             <button id="submit-login-btn-author"  @click="submit" class="btn w-full">Masuk</button>
             <!-- Redirect link to Register -->
             <RouterLink class="flex flex-col items-end text-left text-sm" to="/register">
